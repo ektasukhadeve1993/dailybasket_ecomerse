@@ -1,1 +1,366 @@
-/* You can add global styles to this file, and also import other style files */
+/* =====================================================
+   GOOGLE FONTS
+===================================================== */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
+
+/* =====================================================
+   ROOT VARIABLES
+===================================================== */
+:root {
+  /* Theme */
+  --primary: #84c225;
+  --primary-rgb: 132, 194, 37;
+  --secondary: #FF6F00;
+  --accent: #FFD700;
+  --bg: #F6F6F6;
+  --text: #333;
+  --card-bg: #fff;
+
+  /* Layout */
+  --nav-height: 80px;
+  --border-radius: 12px;
+  --transition: all 0.3s ease;
+
+  /* Admin */
+  --admin-sidebar: #5A9216;
+  --admin-navbar: #5A9216;
+  --admin-bg: #84c225;
+  --admin-card: #C8E6A5;
+  --admin-text: #333;
+
+  /* Font */
+  --primary-font: "Poppins", sans-serif;
+  --secondary-font: "Roboto", sans-serif;
+}
+
+/* =====================================================
+   RESET & BASE
+===================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--primary-font);
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+  color: var(--text);
+  background-color: var(--bg);
+}
+
+/* =====================================================
+   COMMON ELEMENTS
+===================================================== */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* =====================================================
+   TYPOGRAPHY
+===================================================== */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.text-muted {
+  opacity: 0.7;
+}
+
+/* =====================================================
+   GLOBAL BUTTON SYSTEM (BOOTSTRAP SAFE)
+===================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-weight: 500;
+  border-radius: 25px;
+  transition: var(--transition);
+}
+
+/* ---------- COLOR VARIANTS ---------- */
+.btn-primary {
+  background-color: var(--primary);
+  color: #fff;
+}
+
+.btn-secondary {
+  background-color: var(--secondary);
+  color: #fff;
+}
+
+.btn-success {
+  background-color: var(--primary);
+  color: #fff;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.btn-warning {
+  background-color: var(--accent);
+  color: #000;
+}
+
+.btn-info {
+  background-color: #0dcaf0;
+  color: #000;
+}
+
+.btn-dark {
+  background-color: #212529;
+  color: #fff;
+}
+
+.btn-primary:hover,
+.btn-secondary:hover,
+.btn-success:hover,
+.btn-danger:hover,
+.btn-warning:hover,
+.btn-info:hover,
+.btn-dark:hover {
+  filter: brightness(0.95);
+  transform: translateY(-1px);
+}
+
+/* ---------- OUTLINE BUTTONS ---------- */
+.btn-outline-primary {
+  border: 1.5px solid var(--primary);
+  color: var(--primary);
+}
+
+.btn-outline-secondary {
+  border: 1.5px solid var(--secondary);
+  color: var(--secondary);
+}
+
+.btn-outline-primary:hover,
+.btn-outline-secondary:hover {
+  background-color: currentColor;
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+/* ---------- SIZE VARIANTS ---------- */
+.btn-xs {
+  padding: 0.2rem 0.6rem;
+  font-size: 0.7rem;
+}
+
+.btn-sm {
+  padding: 0.35rem 0.9rem;
+  font-size: 0.8rem;
+}
+
+.btn-md {
+  padding: 0.5rem 1.4rem;
+  font-size: 0.9rem;
+}
+
+.btn-lg {
+  padding: 0.7rem 1.8rem;
+  font-size: 1rem;
+}
+
+/* ---------- SHAPE VARIANTS ---------- */
+.btn-pill {
+  border-radius: 50px;
+}
+
+.btn-rounded {
+  border-radius: var(--border-radius);
+}
+
+.btn-square {
+  border-radius: 6px;
+}
+
+/* ---------- ICON BUTTONS ---------- */
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-icon-only {
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border-radius: 50%;
+}
+
+/* ---------- ACTION BUTTONS ---------- */
+.btn-add {
+  background-color: var(--primary);
+  color: #fff;
+}
+
+.btn-edit {
+  background-color: var(--accent);
+  color: #000;
+}
+
+.btn-delete {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.btn-view {
+  background-color: var(--secondary);
+  color: #fff;
+}
+
+.btn-add:hover,
+.btn-edit:hover,
+.btn-delete:hover,
+.btn-view:hover {
+  filter: brightness(0.9);
+}
+
+/* ---------- LINK BUTTON ---------- */
+.btn-link-soft {
+  background: transparent;
+  color: var(--primary);
+  padding: 0;
+}
+
+.btn-link-soft:hover {
+  text-decoration: underline;
+}
+
+/* ---------- FULL WIDTH ---------- */
+.btn-block {
+  width: 100%;
+}
+
+/* ---------- DISABLED ---------- */
+.btn:disabled,
+.btn.disabled {
+  opacity: 0.6;
+  pointer-events: none;
+  transform: none !important;
+}
+
+/* ---------- LOADING ---------- */
+.btn-loading {
+  position: relative;
+  pointer-events: none;
+  opacity: 0.75;
+}
+
+.btn-loading::after {
+  content: "";
+  width: 16px;
+  height: 16px;
+  border: 2px solid #fff;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: btn-spin 0.6s linear infinite;
+}
+
+@keyframes btn-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =====================================================
+   FORMS
+===================================================== */
+.form-control,
+.form-select {
+  border-radius: var(--border-radius);
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 0.2rem rgba(var(--primary-rgb), 0.25);
+}
+
+/* =====================================================
+   CARDS
+===================================================== */
+.card {
+  border-radius: var(--border-radius);
+  background-color: var(--card-bg);
+  transition: var(--transition);
+}
+
+.card.shadow-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+}
+
+/* =====================================================
+   TABLES
+===================================================== */
+.table thead th {
+  background-color: var(--bg);
+  font-weight: 600;
+}
+
+/* =====================================================
+   UTILITIES
+===================================================== */
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.rounded-lg {
+  border-radius: var(--border-radius);
+}
+
+.shadow-soft {
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+/* =====================================================
+   HOVER EFFECTS
+===================================================== */
+.hover-lift {
+  transition: var(--transition);
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+@media (max-width: 575.98px) {
+  .navbar{
+    min-height: 100vh;
+  }
+
+  .navbar .navbar-collapse {
+     overflow-y: auto;
+  }
+}
