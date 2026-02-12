@@ -50,6 +50,8 @@ import { StaffDashboardComponent } from './pages/staff/staff-dashboard/staff-das
 import { StaffInventoryComponent } from './pages/staff/staff-inventory/staff-inventory.component';
 import { StaffSupportComponent } from './pages/staff/staff-support/staff-support.component';
 import { StaffReportsComponent } from './pages/staff/staff-reports/staff-reports.component';
+import { StoreComponent } from './pages/public/store/store.component';
+import { BrandsComponent } from './pages/public/brands/brands.component';
 
 
 export const routes: Routes = [
@@ -61,7 +63,9 @@ export const routes: Routes = [
       { path: '', component: HomeComponent },
       { path: 'products', component: ProductsComponent },
       { path: 'about', component: AboutComponent },
-      { path: 'contact', component: ContactComponent }
+      { path: 'store', component: StoreComponent },
+      { path: 'contact', component: ContactComponent },
+      { path: 'brand', component: BrandsComponent },
     ]
   },
    /* ================= AUTH ================= */

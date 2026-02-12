@@ -1,0 +1,85 @@
+@import '../../../../styles.css';
+
+.header li a:hover {
+    text-decoration: underline;
+}
+
+.navbar {
+    height: var(--nav-height);
+    background: var(--primary);
+    transition: var(--transition);
+    overflow: visible; /* important for dropdown */
+}
+
+/* xs – mobile */
+.search {
+  max-width: 520px;
+}
+
+.dropdown-menu {
+  background: var(--bg);
+}
+
+/* Prevent layout shift */
+.navbar .dropdown-menu {
+  position: absolute !important;
+  z-index: 1050;
+}
+
+/* Hover effect */
+.dropdown-menu li a:hover {
+  color: var(--accent);
+  font-size: 20px;
+  background: var(--primary);
+}
+
+/* Dropdown spacing (Desktop Default) */
+.category-menu {
+  margin-top: 10px;
+  min-width: 220px;
+}
+
+/* 📱 Mobile (375px and below) */
+@media (max-width: 575px) {
+
+  .category-menu {
+    margin-top: 4px;      /* closer to navbar */
+    min-width: 180px;     /* smaller width */
+  }
+
+}
+
+/* sm – large mobile */
+@media (min-width: 576px) {
+  .search {
+    max-width: 560px;
+  }
+}
+
+/* md – tablet */
+@media (min-width: 768px) {
+  .search {
+    max-width: 620px;
+  }
+}
+
+/* lg – desktop */
+@media (min-width: 992px) {
+  .search {
+    max-width: 720px;
+  }
+}
+
+/* xl – large desktop */
+@media (min-width: 1200px) {
+  .search {
+    max-width: 720px;
+  }
+}
+
+/* xxl – very large screens */
+@media (min-width: 1400px) {
+  .search {
+    max-width: 820px;
+  }
+}

@@ -1,1 +1,288 @@
-<p>header works!</p>
+<header class="header bg-dark rounded-pill fs-4 text-white d-none d-lg-block">
+  <div class="container">
+    <ul class="d-flex justify-content-center align-items-center gap-4 py-2">
+      <li>
+        <a routerLink="/compare" class="text-capitalize"> compare </a>
+      </li>
+
+      <li class="divider">|</li>
+
+      <li>
+        <a routerLink="/track" class="text-capitalize"> Track order</a>
+      </li>
+
+      <li class="divider">|</li>
+
+      <li class="fw-bold">
+        <span>Helpline :</span>
+        <a href="8801234567890"> +91 8801234567890</a>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<nav
+  class="navbar mt-2 navbar-light bg-light shadow-lg border-bottom border-top py-3"
+>
+  <div class="container">
+    <div class="row w-100 align-items-center text-center text-md-start">
+      <!-- LOGO -->
+      <div
+        class="col-12 col-md-auto order-1 d-flex justify-content-center justify-content-md-start"
+      >
+        <a routerLink="/" class="navbar-brand m-0">
+          <img
+            src="assets/images/logo.png"
+            alt="logo"
+            class="img-fluid"
+            height="50"
+            width="50"
+          />
+        </a>
+      </div>
+
+      <!-- SEARCH (BETWEEN LOGO & ICONS AT md) -->
+      <div
+        class="col-12 col-md order-2 d-flex justify-content-center justify-content-md-center mt-2 mt-md-0"
+      >
+        <form class="position-relative w-100 search" (ngSubmit)="onsearch()">
+          <input
+            type="text"
+            class="form-control rounded-pill ps-3 pe-5 text-center text-md-start"
+            placeholder="Search products..."
+          />
+
+          <i
+            class="bi bi-search position-absolute top-50 end-0 translate-middle-y me-3 text-secondary pe-none"
+          >
+          </i>
+        </form>
+      </div>
+
+      <!-- ICONS -->
+      <div
+        class="col-12 col-md-auto col-lg-auto order-3 d-flex justify-content-center justify-content-md-end mt-2 mt-md-0"
+      >
+        <ul class="navbar-nav flex-row gap-2 align-items-center">
+          <li class="nav-item">
+            <a
+              routerLink="/wishlist"
+              class="nav-link btn btn-sm btn-light rounded-circle"
+              role="button"
+            >
+              <i class="bi bi-heart fs-3"></i>
+            </a>
+          </li>
+
+          <li class="nav-item position-relative">
+            <a
+              routerLink="/customer/cart"
+              class="nav-link btn btn-sm btn-light rounded-circle"
+              role="button"
+            >
+              <i class="bi bi-cart fs-3"></i>
+
+              <span
+                *ngIf="cartCount > 0"
+                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cart-badge"
+              >
+                {{ cartCount }}
+              </span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a
+              routerLink="/auth/login"
+              class="nav-link btn btn-sm btn-light rounded-circle d-flex"
+              *ngIf="!isLoggedIn"
+              role="button"
+            >
+              <i class="bi bi-person fs-3"></i>
+            </a>
+          </li>
+
+          <li class="nav-item dropdown position-relative" *ngIf="isLoggedIn">
+            <a
+              class="nav-link dropdown-toggle d-flex align-items-center gap-2"
+              data-bs-toggle="dropdown"
+              role="button"
+            >
+              <span
+                class="rounded-circle bg-success text-white fw-bold d-inline-flex align-items-center justify-content-center"
+                style="width: 32px; height: 32px"
+              >
+                {{ userInitial }}
+              </span>
+
+              <span class="d-none d-lg-inline text-capitalize">
+                {{ username || "Account" }}
+              </span>
+            </a>
+
+            <ul
+              class="dropdown-menu dropdown-menu-end position-absolute end-0 mt-3"
+              style="z-index: 1055"
+            >
+              <li>
+                <a
+                  routerLink="/customer/profile"
+                  class="dropdown-item d-flex align-items-center gap-2"
+                >
+                  <i class="bi bi-person fs-5"></i>
+                  Profile
+                </a>
+              </li>
+
+              <li>
+                <a
+                  routerLink="/customer/orders"
+                  class="dropdown-item d-flex align-items-center gap-2"
+                >
+                  <i class="bi bi-bag-check fs-5"></i>
+                  My order
+                </a>
+              </li>
+
+              <li *ngIf="userRole === 'Customer'">
+                <a
+                  routerLink="/customer/dashboard"
+                  class="dropdown-item d-flex align-items-center gap-2"
+                >
+                  <i class="bi bi-speedometer2 fs-5"></i>
+                  Dashboard
+                </a>
+              </li>
+
+              <li *ngIf="userRole === 'Admin'">
+                <a
+                  routerLink="/admin/dashboard"
+                  class="dropdown-item d-flex align-items-center gap-2"
+                >
+                  <i class="bi bi-speedometer2 fs-5"></i>
+                  Dashboard
+                </a>
+              </li>
+
+              <li *ngIf="userRole === 'Seller'">
+                <a
+                  routerLink="/seller/dashboard"
+                  class="dropdown-item d-flex align-items-center gap-2"
+                >
+                  <i class="bi bi-speedometer2 fs-5"></i>
+                  Dashboard
+                </a>
+              </li>
+
+              <li *ngIf="userRole === 'Staff'">
+                <a
+                  routerLink="/staff/dashboard"
+                  class="dropdown-item d-flex align-items-center gap-2"
+                >
+                  <i class="bi bi-speedometer2 fs-5"></i>
+                  Dashboard
+                </a>
+              </li>
+
+              <li *ngIf="userRole === 'Delivery'">
+                <a
+                  routerLink="/delivery/dashboard"
+                  class="dropdown-item d-flex align-items-center gap-2"
+                >
+                  <i class="bi bi-speedometer2 fs-5"></i>
+                  Dashboard
+                </a>
+              </li>
+
+              <li><hr class="dropdown-divider" /></li>
+
+              <li>
+                <button
+                  class="dropdown-item bg-danger d-flex gap-2 btn"
+                  (click)="logout()"
+                >
+                  <i class="bi bi-box-arrow-right fs-5"></i>
+                  logout
+                </button>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<nav class="navbar shadow-lg border-bottom border-top py-3 rounded position-relative">
+  <div class="container">
+
+    <div class="row w-100 align-items-center flex-nowrap text-white">
+
+      <!-- 🟢 LEFT: Shop By Category -->
+      <div class="col d-flex align-items-center">
+        <ul class="navbar-nav w-100">
+          <li class="nav-item dropdown w-100 position-static">
+
+            <a class="nav-link fw-bold d-flex align-items-center text-capitalize  gap-2"
+               role="button"
+               data-bs-toggle="dropdown">
+
+              <!-- Left Icon -->
+              <i class="bi bi-list fs-4"></i>
+              shop by categoy
+
+              <!-- Empty space for mobile symmetry -->
+              <span class="d-md-none" style="width:24px;"></span>
+
+            </a>
+
+            <!-- Category Dropdown -->
+            <ul class="dropdown-menu category-menu shadow border-0 p-3">
+              <li class="p-2"><a class="dropdown-item" href="#">Fruits</a></li>
+              <li class="p-2"><a class="dropdown-item" href="#">Vegetables</a></li>
+              <li class="p-2"><a class="dropdown-item" href="#">Dairy</a></li>
+              <li class="p-2"><a class="dropdown-item" href="#">Bakery</a></li>
+              <li class="p-2"><a class="dropdown-item" href="#">Beverages</a></li>
+            </ul>
+
+          </li>
+        </ul>
+      </div>
+
+      <!-- 🔥 RIGHT SIDE -->
+      <div class="col-auto d-flex align-items-center gap-3">
+
+        <!-- Daily Deals (Hidden on Mobile) -->
+        <a class="btn btn-sm  btn-warning rounded-pill px-4 d-none d-md-flex align-items-center gap-2 ">
+          <i class="bi bi-tags-fill"></i>
+          Daily Deals
+        </a>
+
+        <!-- Right Menu Dropdown -->
+        <ul class="navbar-nav">
+          <li class="nav-item dropdown position-relative">
+
+            <a class="nav-link fw-bold "
+               role="button"
+               data-bs-toggle="dropdown">
+              <i class="bi bi-list fs-4"></i>
+            </a>
+
+            <ul class="dropdown-menu dropdown-menu-end category-menu shadow border-0 p-3">
+              <li class="p-2"><a class="dropdown-item" routerLink="/">Home</a></li>
+              <li class="p-2"><a class="dropdown-item" routerLink="/products">Products</a></li>
+              <li class="p-2"><a class="dropdown-item" routerLink="/store">Store</a></li>
+              <li class="p-2"><a class="dropdown-item" routerLink="/brands">Brands</a></li>
+              <li class="p-2"><a class="dropdown-item" routerLink="/about">About</a></li>
+              <li class="p-2"><a class="dropdown-item" routerLink="/contact">Contact</a></li>
+            </ul>
+
+          </li>
+        </ul>
+
+      </div>
+
+    </div>
+  </div>
+</nav>
+
